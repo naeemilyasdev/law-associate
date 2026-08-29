@@ -375,6 +375,44 @@ a:hover {
     animation: slideInLeft 0.8s ease-out;
 }
 
+.hero-branding {
+    margin-bottom: 0.75rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-brand-mark {
+    font-family: var(--font-heading);
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--color-gold);
+    font-weight: 700;
+}
+
+.hero-brand-name {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ivory);
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+.hero-tagline {
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--color-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
 .hero-title {
     font-size: 4.5rem;
     line-height: 1.15;
