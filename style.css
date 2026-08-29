@@ -1467,9 +1467,31 @@ a:hover {
     .practice-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .team-image-wrap {
+        height: 460px;
+    }
+
+    .team-info h3 {
+        font-size: clamp(1.45rem, 5vw, 2rem);
+    }
+
+    .team-info p {
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+    }
     
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .experience .timeline-details li {
+        font-size: 0.98rem;
     }
     
     .timeline::before {
@@ -1557,6 +1579,31 @@ a:hover {
     
     .practice-grid {
         grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-image-wrap {
+        height: 360px;
+    }
+
+    .team-info {
+        padding: 1.3rem 1rem 1.5rem;
+    }
+
+    .team-info h3 {
+        font-size: 1.45rem;
+    }
+
+    .experience .timeline-title {
+        font-size: 1.5rem;
+    }
+
+    .experience .timeline-details li {
+        font-size: 0.96rem;
+        padding-left: 1rem;
     }
     
     .contact-grid {
