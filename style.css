@@ -42,6 +42,14 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
+}
+
+img, svg, video {
+    max-width: 100%;
+    display: block;
+    height: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,15 +70,15 @@ body {
     background: radial-gradient(circle at top, rgba(212, 175, 55, 0.08), transparent 30%), linear-gradient(135deg, #0a0a0a 0%, #020202 100%);
     color: var(--color-text);
     line-height: 1.7;
-    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100vh;
     letter-spacing: 0.01em;
 }
 
 .container {
-    max-width: 1280px;
+    width: min(100%, 1280px);
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding-inline: clamp(18px, 3vw, 2rem);
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -1353,71 +1361,100 @@ a:hover {
 
 /* ===== RESPONSIVE DESIGN ===== */
 
+@media (max-width: 1440px) {
+    .container {
+        width: min(100%, 1220px);
+    }
+}
+
+@media (max-width: 1280px) {
+    .hero-title {
+        font-size: clamp(2.8rem, 4vw, 4rem);
+    }
+
+    .practice-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 1024px) {
     .container {
-        padding: 0 var(--spacing-md);
+        padding-inline: 24px;
     }
-    
-    h1 {
-        font-size: 3.5rem;
+
+    .nav-menu {
+        gap: 1rem;
     }
-    
-    h2 {
-        font-size: 2.75rem;
-    }
-    
+
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
-    .hero-image {
-        max-width: 400px;
-        margin: 0 auto;
+
+    .hero-centered {
+        max-width: 760px;
     }
-    
+
+    .hero-description {
+        max-width: 700px;
+    }
+
     .credibility-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 2rem;
     }
-    
+
     .credibility-item {
         border-right: none;
         border-bottom: 1px solid var(--color-border);
         padding: 1.5rem;
     }
-    
+
     .credibility-item:nth-child(3),
     .credibility-item:nth-child(4) {
         border-bottom: none;
     }
-    
-    .about-content-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
-    
+
+    .about-portrait {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .about-copy .section-title {
+        text-align: center;
+    }
+
+    .section-rule {
+        margin-inline: auto;
+    }
+
     .practice-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1.5rem;
     }
-    
+
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.5rem;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
     }
-    
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-    }
-    
+
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
     }
 }
 
@@ -1425,47 +1462,70 @@ a:hover {
     .hamburger {
         display: flex;
     }
-    
+
+    .navbar {
+        min-height: 72px;
+        padding: 0.8rem 0;
+    }
+
+    .navbar-content {
+        gap: 0;
+        position: relative;
+    }
+
     .nav-menu {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 0.4rem);
         left: 0;
         right: 0;
         background-color: rgba(5, 12, 21, 0.98);
         flex-direction: column;
-        gap: 1.5rem;
-        padding: 2rem;
+        gap: 1.2rem;
+        padding: 1.5rem 1rem;
         display: none;
         border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        z-index: 20;
     }
-    
+
     .nav-menu.active {
         display: flex;
     }
-    
+
     .navbar .btn-consultation {
         display: none;
     }
-    
+
     .hero {
-        padding-top: 60px;
-        padding-bottom: 2rem;
+        min-height: auto;
+        height: auto;
+        padding: 92px 0 3rem;
     }
-    
+
     .hero-title {
-        font-size: 2.75rem;
+        font-size: clamp(2.35rem, 9vw, 3.3rem);
     }
-    
+
     .hero-text {
         order: 2;
     }
-    
+
     .hero-image {
         order: 1;
     }
-    
-    .practice-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .credibility-grid {
+        grid-template-columns: 1fr;
     }
 
     .team-grid {
@@ -1474,37 +1534,43 @@ a:hover {
     }
 
     .team-image-wrap {
-        height: 460px;
+        height: clamp(300px, 62vw, 460px);
+    }
+
+    .team-info {
+        padding: 1.3rem 1rem 1.5rem;
     }
 
     .team-info h3 {
-        font-size: clamp(1.45rem, 5vw, 2rem);
+        font-size: clamp(1.3rem, 6vw, 2rem);
+        line-height: 1.25;
+        word-break: break-word;
     }
 
     .team-info p {
         font-size: 0.8rem;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
     }
-    
+
+    .practice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .services-grid {
         grid-template-columns: 1fr;
     }
 
-    .experience .timeline-details li {
-        font-size: 0.98rem;
-    }
-    
     .timeline::before {
         display: none;
     }
-    
+
     .timeline-item:nth-child(odd) .timeline-content,
     .timeline-item:nth-child(even) .timeline-content {
         margin: 0;
         padding: 0;
         text-align: left;
     }
-    
+
     .timeline-marker {
         position: relative;
         left: auto;
@@ -1513,70 +1579,80 @@ a:hover {
         margin-right: 1.5rem;
         vertical-align: top;
     }
-    
+
+    .experience .timeline-details li {
+        font-size: 0.99rem;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr;
     }
+
+    .whatsapp-float {
+        right: 1rem;
+        bottom: 1rem;
+        width: 48px;
+        height: 48px;
+    }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 520px) {
     :root {
         --spacing-lg: 1.5rem;
         --spacing-3xl: 3rem;
     }
-    
+
+    .container {
+        padding-inline: 18px;
+    }
+
     h1 {
         font-size: 2.25rem;
     }
-    
+
     h2 {
         font-size: 1.75rem;
     }
-    
+
     h3 {
         font-size: 1.25rem;
     }
-    
+
     p {
         font-size: 1rem;
     }
-    
+
     .section-title {
-        font-size: 2.25rem;
+        font-size: clamp(2rem, 9vw, 2.6rem);
     }
-    
+
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(2rem, 10vw, 2.5rem);
     }
-    
+
     .hero-description {
         font-size: 1rem;
     }
-    
+
     .hero-buttons {
-        flex-direction: column;
         gap: 1rem;
     }
-    
+
     .btn {
         width: 100%;
         text-align: center;
         padding: 0.9rem 1.5rem;
     }
-    
-    .credibility-grid {
-        grid-template-columns: 1fr;
-    }
-    
+
     .credibility-item {
         border-bottom: 1px solid var(--color-border);
         border-right: none;
     }
-    
-    .about-content-grid {
+
+    .about-meta {
         grid-template-columns: 1fr;
     }
-    
+
     .practice-grid {
         grid-template-columns: 1fr;
     }
@@ -1586,11 +1662,7 @@ a:hover {
     }
 
     .team-image-wrap {
-        height: 360px;
-    }
-
-    .team-info {
-        padding: 1.3rem 1rem 1.5rem;
+        height: 320px;
     }
 
     .team-info h3 {
@@ -1605,21 +1677,47 @@ a:hover {
         font-size: 0.96rem;
         padding-left: 1rem;
     }
-    
+
     .contact-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .section-header {
         margin-bottom: 2rem;
     }
-    
+
     .philosophy-quote-mark {
         font-size: 120px;
     }
-    
+
     .philosophy-title {
         font-size: 1.75rem;
+    }
+
+    .logo-main {
+        font-size: 1.3rem;
+    }
+
+    .logo-sub {
+        font-size: 0.58rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding-inline: 16px;
+    }
+
+    .team-image-wrap {
+        height: 280px;
+    }
+
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-consultation {
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
     }
 }
 
