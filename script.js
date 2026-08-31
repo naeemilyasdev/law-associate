@@ -102,10 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const consultationButtons = document.querySelectorAll('.btn-consultation, .btn-primary');
     const scrollButtons = document.querySelectorAll('[data-scroll-target]');
+    const whatsappLinks = document.querySelectorAll('.whatsapp-link');
 
     consultationButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             if (this.type === 'submit') {
+                return;
+            }
+
+            if (this.classList.contains('whatsapp-link')) {
                 return;
             }
 
@@ -117,6 +122,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'start'
                 });
             }
+        });
+    });
+
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const phone = this.dataset.phone || '923016077567';
+            const message = this.dataset.message || 'Assalam o Alaikum, I would like to discuss a legal matter.';
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         });
     });
 
@@ -155,8 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if ('IntersectionObserver' in window) {
         elements.forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(8px)';
+            el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
             observer.observe(el);
         });
     }
